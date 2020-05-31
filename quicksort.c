@@ -82,10 +82,10 @@ static void swap(void *a, void *b, size_t size) {
     char *aa = (char *)malloc(sizeof(char) * size);
     char *bb = (char *)malloc(sizeof(char) * size);
     char *temp = (char *)malloc(sizeof(char) * size);
-    while (a*){
-		*temp++ = *a++;
-		*a++ = *b++;
-		*b++ = *temp++;
+    while (aa*){
+		*temp++ = *aa++;
+		*aa++ = *bb++;
+		*bb++ = *temp++;
     }
 }
 

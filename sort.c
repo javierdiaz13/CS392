@@ -83,10 +83,11 @@ int main(int argc, char **argv) {
         file_count++;
         optind++;
         if (file_count > 1){
-    	printf("Error: Too many files specified");
-    	is_error++;
+    		printf("Error: Too many files specified");
+    		is_error++;
     	}  
     } 
+    
     if (argc <= 1 || is_error != 0) {
     	puts(
     		"Usage: ./sort [-i|-d] filename"
