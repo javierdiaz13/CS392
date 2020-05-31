@@ -1,7 +1,7 @@
 /*******************************************************************************
  * Name        : quicksort.c
- * Author      : Javier Diaz
- * Date        : June 1,2020
+ * Author      : 
+ * Date        : 
  * Description : Quicksort implementation.
  * Pledge      :
  ******************************************************************************/
@@ -11,10 +11,8 @@
 
 /* Static (private to this file) function prototypes. */
 static void swap(void *a, void *b, size_t size);
-static int lomuto(void *array, int left, int right, size_t elem_sz,
-                  int (*comp) (const void*, const void*));
-static void quicksort_helper(void *array, int left, int right, size_t elem_sz,
-                             int (*comp) (const void*, const void*));
+static int lomuto(void *array, int left, int right, size_t elem_sz, int (*comp) (const void*, const void*));
+static void quicksort_helper(void *array, int left, int right, size_t elem_sz, int (*comp) (const void*, const void*));
 
 /**
  * Compares two integers passed in as void pointers and returns an integer
@@ -26,23 +24,11 @@ static void quicksort_helper(void *array, int left, int right, size_t elem_sz,
  * -- a negative if the second integer is greater
  */
 int int_cmp(const void *a, const void *b) {
-/*
     // TODO
-    a = (int *)malloc(sizeof(int));
-    b = (int *)malloc(sizeof(int));
-    int result = *(a) - *(b);
-    if (result){
-    	return 0;
-    }
-    else if (result > 0){
-    	return 4;
-    }
-    else {
-    	return -4;
-    }
-*/
+    int *aa = (int *)malloc(sizeof(int));
+    int *bb = (int *)malloc(sizeof(int));
+    return ( *(aa) - *(bb) );
 }
-
 
 /**
  * Compares two doubles passed in as void pointers and returns an integer
@@ -54,22 +40,20 @@ int int_cmp(const void *a, const void *b) {
  * -- -1 if the second double is greater
  */
 int dbl_cmp(const void *a, const void *b) {
-/*
     // TODO
-    a =(double *)malloc(sizeof(double));
-    b =(double *)malloc(sizeof(double));
-    if ( *(a) == *(b) ){
+    double *aa = (double *)malloc(sizeof(double));
+    double *bb = (double *)malloc(sizeof(double));
+    int result = ( *(aa) - *(bb) );
+    if (result){
     	return 0;
     }
-    else if ( *(a) > *(b) ){
+    else if (result > 0){
     	return 1;
     }
     else {
-    	return -1;
+    	return -1
     }
-*/
 }
-
 
 /**
  * Compares two char arrays passed in as void pointers and returns an integer
@@ -78,14 +62,11 @@ int dbl_cmp(const void *a, const void *b) {
  * Returns the result of calling strcmp on them.
  */
 int str_cmp(const void *a, const void *b) { 
-/*
     // TODO
-    a =(char *)malloc(sizeof(char));
-    b =(char *)malloc(sizeof(char));
-    return (strcmp(*(a), *(b)));
-*/
+    char *aa = (char *)malloc(sizeof(char));
+    char *bb = (char *)malloc(sizeof(char));
+    return strcmp(*(aa),*(bb));
 }
-
 
 /**
  * Swaps the values in two pointers.
@@ -97,36 +78,16 @@ int str_cmp(const void *a, const void *b) {
  * swaps 4 bytes in a and b character pointers.
  */
 static void swap(void *a, void *b, size_t size) {
-/*
     // TODO
-    if (size == 4){
-    	int *temp;
-  		while (*a){
-  			*temp++ = *b++;
-  			*b++ = *a++
-  			*a++ = *temp++ 
-  		}
+    char *aa = (char *)malloc(sizeof(char) * size);
+    char *bb = (char *)malloc(sizeof(char) * size);
+    char *temp = (char *)malloc(sizeof(char) * size);
+    while (a*){
+		*temp++ = *a++;
+		*a++ = *b++;
+		*b++ = *temp++;
     }
-    else if (size == 8){
- 		double *temp;
- 		while (*a){
-  			*temp++ = *b++;
-  			*b++ = *a++
-  			*a++ = *temp++ 
-  		}
-    }
-    else {
-		char *temp;
-		while (*a){
-  			*temp++ = *b++;
-  			*b++ = *a++
-  			*a++ = *temp++ 
-  		}
-    }
-  
-*/  
 }
-
 
 /**
  * Partitions array around a pivot, utilizing the swap function.
@@ -140,21 +101,19 @@ static void swap(void *a, void *b, size_t size) {
  */
 static int lomuto(void *array, int left, int right, size_t elem_sz,
                   int (*comp) (const void*, const void*)) {
-/*
     // TODO
-    char *p = array +left;
-    size_t s = left;
+    char *arr = (char *)array;
+    char *p = array + left * elem_sz;
+    int s = left;
     for (size_t i = left + 1; i <= right; i++){
-    	if (*(array + i) < p) {
+    	if (*(array + i) < *(p)){
     		s++;
-    		swap(*(array + s),*(array + i))
+    		swap(*(array + s * elem_sz), *(array + i * elem_sz), elem_sz);
     	}
     }
-    swap(*(array + left),*(array + s));
+    swap(*(array + s * elem_sz), *(array + i * elem_sz), elem_sz);
     return s;
-*/
 }
-
 
 /**
  * Sorts with lomuto partitioning, with recursive calls on each side of the
@@ -165,6 +124,8 @@ static int lomuto(void *array, int left, int right, size_t elem_sz,
 static void quicksort_helper(void *array, int left, int right, size_t elem_sz,
                              int (*comp) (const void*, const void*)) {
     // TODO
+    int s = lomuto_partition(array, left, right, elem_sz);
+    
 }
 
 /**
@@ -173,8 +134,14 @@ static void quicksort_helper(void *array, int left, int right, size_t elem_sz,
  */
 void quicksort(void *array, size_t len, size_t elem_sz,
                int (*comp) (const void*, const void*)) {
-/*
     // TODO
-    quicksort_helper(array, 0, len - 1, elem_sz,)
-*/
+    if (elem_sz == 4){
+    	return quicksort_helper(void *array, 0, len - 1; 4, (*int_cmp) (const void*, const void*));
+    }
+    else if (elem_sz == 8){
+    	return quicksort_helper(void *array, 0, len - 1; 8, (*dbl_cmp) (const void*, const void*));
+    }
+    else {
+    	return quicksort_helper(void *array, 0, len - 1; 1, (*str_cmp) (const void*, const void*));
+    }
 }
